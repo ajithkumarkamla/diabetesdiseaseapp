@@ -1,0 +1,142 @@
+{% extends 'basee.html' %}
+
+{% block title %}Diabetes Prediction{% endblock %}
+
+{% block content %}
+<style>
+:root {
+    --primary-color: #003366;   /* Dark blue */
+    --accent-color: #00bcd4;    /* Cyan blue */
+    --text-color: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #cccccc;
+    --bg-color: #001f3f;
+    --btn-hover: #008cba;
+    --radius: 8px;
+    --transition: 0.3s ease;
+}
+
+/* Base */
+body {
+    background-color: var(--bg-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Form container */
+.form-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Header */
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.form-header p {
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Grid layout */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Form field */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+input, select {
+    padding: 10px 12px;
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius);
+    background-color: var(--input-bg);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.3);
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Submit button */
+button.btn {
+    grid-column: span 2;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: var(--btn-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    button.btn {
+        grid-column: span 1;
+    }
+}
+</style>
+
+<div class="form-container">
+    <div class="form-header">
+        <h2>Diabetes Risk Prediction</h2>
+        <p>Fill in the details below to predict your diabetes risk.</p>
+    </div>
+
+    <form method="POST" action="{% url 'result' %}">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">{{ field.errors.0 }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn">Predict Risk</button>
+    </form>
+</div>
+{% endblock %}

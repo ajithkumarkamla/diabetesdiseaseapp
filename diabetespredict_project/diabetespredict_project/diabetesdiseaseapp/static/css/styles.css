@@ -1,0 +1,51 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    min-height: 100vh;
+  background-image:url("static/images/diabetes.jpg");
+}
+
+
+nav {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 30px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+
+}
+
+.nav-links a {
+    margin-left: 20px;
+    color: #ffd700;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: #ffa500;
+}
+
+main {
+    padding: 50px 30px;
+    z-index: 1;
+    position: relative;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}

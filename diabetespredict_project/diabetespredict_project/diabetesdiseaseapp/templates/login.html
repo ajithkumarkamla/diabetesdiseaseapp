@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login | Disease Predictor{% endblock %}
+
+{% block content %}
+<style>
+    /* Page Background */
+    body {
+        background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .login-container {
+        background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for visibility */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        margin: 100px auto;
+        animation: fadeIn 0.8s ease-in-out;
+        max-height: 500px;
+        overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .login-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #003366;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .login-container label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+        color: #333;
+        font-size: 15px;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 18px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .login-container input:focus {
+        border-color: #00bcd4;
+        outline: none;
+    }
+
+    .login-container button {
+        width: 100%;
+        padding: 12px;
+        background: #003366;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .login-container button:hover {
+        background: #00bcd4;
+        transform: translateY(-3px);
+    }
+
+    .error {
+        color: red;
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .register-link a {
+        color: #003366;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .register-link a:hover {
+        color: #00bcd4;
+    }
+
+    @media (max-width: 500px) {
+        .login-container {
+            padding: 20px 15px;
+        }
+
+        .login-container input,
+        .login-container button {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<!-- ✅ Login Form Container -->
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" placeholder="Enter your username" required>
+
+        <label for="password">Password:</label>
+        <div style="position: relative;">
+            <input type="password" name="password" id="password" placeholder="Enter your password" required style="padding-right: 40px;">
+            <i class="fa fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 12px; cursor: pointer; color: #888;"></i>
+        </div>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if messages %}
+            <div class="alert-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="register-link">
+        <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome CDN -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.getElementById("togglePassword");
+        const password = document.getElementById("password");
+
+        toggle.addEventListener("click", function () {
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            this.classList.toggle("fa-eye-slash");
+        });
+    });
+</script>
+
+{% endblock %}

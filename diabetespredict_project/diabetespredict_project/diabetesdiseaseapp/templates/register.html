@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register | Disease Predictor{% endblock %}
+
+{% block content %}
+<style>
+    /* Page Background */
+    body {
+        background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 18px;
+        color: #666;
+        user-select: none;
+    }
+
+    .register-container {
+        background-color: rgba(255, 255, 255, 0.95); /* Transparent white for contrast */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        margin: 100px auto;
+        animation: fadeIn 0.8s ease-in-out;
+        max-height: 600px;
+        overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .register-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #003366;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .register-container label {
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: block;
+        color: #333;
+        font-size: 15px;
+    }
+
+    .register-container input[type="text"],
+    .register-container input[type="password"],
+    .register-container select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 18px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .register-container input:focus {
+        border-color: #00bcd4;
+        outline: none;
+    }
+
+    .register-container button {
+        width: 100%;
+        padding: 12px;
+        background: #003366;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .register-container button:hover {
+        background: #00bcd4;
+        transform: translateY(-3px);
+    }
+
+    .error {
+        color: red;
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .login-link a {
+        color: #003366;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-link a:hover {
+        color: #00bcd4;
+    }
+
+    @media (max-width: 500px) {
+        .register-container {
+            padding: 20px 15px;
+        }
+
+        .register-container input,
+        .register-container button {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" placeholder="Choose a username" required>
+
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="password1">Password:</label>
+        <div style="position: relative;">
+            <input type="password" name="password1" id="password1" placeholder="Create a password" required style="padding-right: 40px;">
+            <span class="toggle-password" data-target="password1">👁️</span>
+        </div>
+
+        <label for="password2">Confirm Password:</label>
+        <div style="position: relative;">
+            <input type="password" name="password2" id="password2" placeholder="Confirm your password" required style="padding-right: 40px;">
+            <span class="toggle-password" data-target="password2">👁️</span>
+        </div>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        {% if messages %}
+            <div class="alert-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="login-link">
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.toggle-password').forEach(function (eye) {
+            eye.addEventListener('click', function () {
+                const target = document.getElementById(this.getAttribute('data-target'));
+                target.type = target.type === "password" ? "text" : "password";
+            });
+        });
+    });
+</script>
+
+{% endblock %}

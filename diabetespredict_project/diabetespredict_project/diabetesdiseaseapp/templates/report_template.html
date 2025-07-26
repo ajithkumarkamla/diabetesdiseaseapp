@@ -1,0 +1,61 @@
+<!-- report_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Report</title>
+    <style>
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+    }
+    .container {
+        margin: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #0000FF;  /* Avoid using Bootstrap classes like text-primary */
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid #000;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction Report</h1>
+        <p><strong>User:</strong> {{ user.username }}</p>
+        <p><strong>Prediction Result:</strong> {{ record.prediction_result }}</p>
+
+        <h3>Your Submitted Values:</h3>
+        <table>
+            <tr><th>Pregnancies</th><td>{{ record.pregnancies }}</td></tr>
+            <tr><th>Glucose</th><td>{{ record.glucose }}</td></tr>
+            <tr><th>Blood Pressure</th><td>{{ record.blood_pressure }}</td></tr>
+            <tr><th>Skin Thickness</th><td>{{ record.skin_thickness }}</td></tr>
+            <tr><th>Insulin</th><td>{{ record.insulin }}</td></tr>
+            <tr><th>BMI</th><td>{{ record.bmi }}</td></tr>
+            <tr><th>Diabetes Pedigree Function</th><td>{{ record.diabetes_pedigree_function }}</td></tr>
+            <tr><th>Age</th><td>{{ record.age }}</td></tr>
+        </table>
+
+        <h3>Health Tips:</h3>
+        <ul>
+            {% for tip in health_tips %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

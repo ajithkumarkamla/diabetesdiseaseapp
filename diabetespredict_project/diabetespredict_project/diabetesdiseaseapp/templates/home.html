@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Home - Disease Predictor{% endblock %}
+
+{% block content %}
+<section class="home-hero">
+    <h1>Predict and Manage Your Health with Ease</h1>
+    <p>
+        Using an expert system based on medical knowledge and symptoms to provide insights into possible health conditions.
+    </p>
+
+</section>
+
+<style>
+    .home-hero {
+        text-align: center;
+        padding: 0; /* Remove padding so the image stretches fully */
+        height: 100vh; /* Full viewport height */
+        max-width: 100%; /* Ensure it takes the full width of the screen */
+        margin: 0 auto;
+        background: url("{% static 'images/home.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        padding-bottom: 50px;
+        overflow-y: auto;
+        color: black; Prevents repeating the image */
+        color: black; /* Text color for contrast against the image */
+        display: flex; /* Use flexbox for centering content */
+        flex-direction: column; /* Align children vertically */
+        justify-content: center; /* Vertically center the content */
+        align-items: center; /* Horizontally center the content */
+    }
+
+    .home-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: black; /* White color for text */
+    }
+
+    .home-hero p {
+        font-size: 1.2rem;
+        color:black;    /* Slightly transparent white text */
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .home-hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .home-hero p {
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %}

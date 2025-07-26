@@ -1,0 +1,151 @@
+{% extends 'basee.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Page Background */
+    body {
+        background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .diabetes-info-container {
+        background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for visibility */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+        margin: 50px auto;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .diabetes-info-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #003366;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .diabetes-info-container h3 {
+        color: #003366;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .diabetes-info-container p,
+    .diabetes-info-container ul {
+        color: #555;
+        font-size: 14px;
+    }
+
+    .diabetes-info-container ul {
+        margin-left: 20px;
+    }
+
+    .diabetes-info-container .back-btn {
+        display: block;
+        margin-top: 30px;
+        text-align: center;
+        padding: 12px;
+        background-color: #003366;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        width: 200px;
+        transition: all 0.3s ease;
+    }
+
+    .diabetes-info-container .back-btn:hover {
+        background: #00bcd4;
+        transform: translateY(-3px);
+    }
+</style>
+
+<!-- Diabetes Info Container -->
+<div class="diabetes-info-container">
+    <h1>Diabetes Insights for Better Health</h1>
+
+    <!-- What is Diabetes Section -->
+    <div>
+        <h3>What is Diabetes?</h3>
+        <p>Diabetes is a chronic medical condition that occurs when the body cannot properly process food for use as energy. It happens when your pancreas doesn't produce enough insulin or when your body cannot use the insulin it produces effectively.</p>
+    </div>
+
+    <!-- Causes of Diabetes Section -->
+    <div>
+        <h3>Causes of Diabetes</h3>
+        <ul>
+            <li>Genetic factors (family history of diabetes)</li>
+            <li>Obesity and being overweight</li>
+            <li>Physical inactivity</li>
+            <li>Unhealthy diet (high sugar and processed foods)</li>
+            <li>High blood pressure or high cholesterol levels</li>
+        </ul>
+    </div>
+
+    <!-- Types of Diabetes Section -->
+    <div>
+        <h3>Types of Diabetes</h3>
+        <ul>
+            <li><strong>Type 1 Diabetes</strong>: An autoimmune condition where the body attacks the insulin-producing cells of the pancreas.</li>
+            <li><strong>Type 2 Diabetes</strong>: A condition where the body doesn't respond to insulin properly or doesn’t make enough insulin.</li>
+            <li><strong>Gestational Diabetes</strong>: Diabetes that can develop during pregnancy and usually goes away after childbirth, but increases the risk of developing type 2 diabetes later in life.</li>
+        </ul>
+    </div>
+
+    <!-- Symptoms of Diabetes Section -->
+    <div>
+        <h3>Symptoms of Diabetes</h3>
+        <ul>
+            <li>Increased thirst</li>
+            <li>Frequent urination</li>
+            <li>Extreme hunger</li>
+            <li>Unexplained weight loss</li>
+            <li>Fatigue</li>
+            <li>Blurred vision</li>
+            <li>Slow-healing sores</li>
+        </ul>
+    </div>
+
+    <!-- Normal Blood Sugar Range Section -->
+    <div>
+        <h3>Normal Blood Sugar Range</h3>
+        <ul>
+            <li><strong>Fasting (no food for at least 8 hours)</strong>: 70-100 mg/dL</li>
+            <li><strong>After eating (2 hours post-meal)</strong>: Below 140 mg/dL</li>
+        </ul>
+    </div>
+
+    <!-- Prevention Tips Section -->
+    <div>
+        <h3>Prevention Tips</h3>
+        <ul>
+            <li>Maintain a healthy weight</li>
+            <li>Exercise regularly (at least 30 minutes a day)</li>
+            <li>Eat a healthy, balanced diet</li>
+            <li>Avoid smoking and excessive alcohol consumption</li>
+            <li>Get regular health check-ups</li>
+            <li>Manage stress levels</li>
+        </ul>
+    </div>
+
+    <!-- Back Button -->
+    <a href="{% url 'index' %}" class="back-btn">Back to Home</a>
+</div>
+
+{% endblock %}

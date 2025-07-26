@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact - Diabetes Prediction{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+ .contact-card {
+        background-color: rgba(0, 0, 0, 0.7); /* Dark translucent background */
+        padding: 40px 30px;
+        border-radius: 12px;
+        max-width: 500px;
+        margin: 100px auto;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .contact-card h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #00bcd4;
+    }
+
+    .contact-item {
+        margin: 20px 0;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .contact-item i {
+        font-size: 22px;
+        color: #00bcd4;
+    }
+
+    .contact-item span {
+        color: #fff;
+    }
+</style>
+
+<!-- Font Awesome (optional) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="contact-card">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you!</p>
+
+    <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <span>support@diabetesprediction.com</span>
+    </div>
+
+    <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <span>+91 9876543210</span>
+    </div>
+
+    <div class="contact-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>AI Health Lab, Chennai, India</span>
+    </div>
+</div>
+{% endblock %}

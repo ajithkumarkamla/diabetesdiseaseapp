@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  /* Hero Section */
+  .hero {
+    position: relative;
+    background: url("{% static 'images/abouthead.jpg' %}") center/cover no-repeat;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    text-shadow: 0 0 12px rgba(0,0,0,0.7);
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 115, 130, 0.5);
+    z-index: 0;
+  }
+  .hero > * {
+    position: relative;
+    z-index: 1;
+  }
+body {
+    background-color: #f0f2f5;
+}
+
+
+
+  /* Container */
+  .container {
+    max-width: 900px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+  }
+
+  /* Mission Statement */
+  .mission-statement {
+    font-size: 1.4rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  /* Vision / Mission / Values Section */
+  .vmv-section {
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 80px;
+  }
+  .vmv-card {
+    flex: 1;
+    background: #e1f0f3;
+    padding: 30px 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  .vmv-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  .vmv-icon {
+    font-size: 3rem;
+    color: #007B8A;
+    margin-bottom: 20px;
+  }
+  .vmv-card h3 {
+    margin-bottom: 15px;
+    color: #004d40;
+  }
+  .vmv-card p {
+    color: #444;
+    line-height: 1.5;
+  }
+
+  /* Testimonials Carousel Placeholder */
+  .testimonials {
+    max-width: 700px;
+    margin: 0 auto 70px;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #555;
+    border-left: 6px solid #007B8A;
+    padding-left: 20px;
+  }
+
+  /* Contact CTA */
+  .contact-cta {
+    background: #007B8A;
+    color: white;
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    max-width: 500px;
+    margin: 0 auto 60px;
+  }
+  .contact-cta:hover {
+    background: #005f67;
+  }
+
+  /* About Us Two Column Section */
+  .about-section {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+  }
+  .about-text {
+    flex: 1 1 400px;
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .about-text h2 {
+    margin-bottom: 20px;
+    color: #007B8A;
+  }
+  .about-image {
+    flex: 1 1 350px;
+    text-align: center;
+  }
+  .about-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  /* Highlight Quote */
+  .quote-box {
+    max-width: 700px;
+    margin: 30px auto 70px;
+    font-size: 1.7rem;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    color: #004d40;
+    border-left: 6px solid #007B8A;
+    padding-left: 20px;
+  }
+
+  /* Methodology flipping cards styles */
+  .features {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 70px;
+  }
+  .feature-box {
+    width: 280px;
+    height: 350px;
+    perspective: 1200px;
+  }
+  .feature-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  .feature-box:hover .feature-inner {
+    transform: rotateY(180deg);
+  }
+  .feature-front, .feature-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    backface-visibility: hidden;
+  }
+  .feature-front {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .feature-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  .feature-back {
+    background: #007B8A;
+    color: white;
+    padding: 25px;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 12px;
+  }
+  .feature-back h4 {
+    margin-bottom: 15px;
+  }
+  .feature-back p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .about-section {
+      flex-direction: column;
+    }
+    .about-image, .about-text {
+      flex: unset;
+      width: 100%;
+    }
+    .features {
+      justify-content: center;
+    }
+    .feature-box {
+      width: 100%;
+      max-width: 320px;
+      margin-bottom: 30px;
+    }
+    .vmv-section {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+</style>
+
+<div class="hero">
+  <div>Empowering Health Through Technology</div>
+</div>
+
+<!-- Highlight Quote moved to top -->
+<div class="quote-box">
+  “Data is the key to unlocking a healthier tomorrow — start your journey with SugarSense today.”
+</div>
+
+<div class="container">
+
+  <p class="mission-statement">
+    At <strong>SugarSense</strong>, our mission is to harness cutting-edge machine learning technology to provide early, accurate diabetes risk predictions — helping individuals take charge of their health with confidence and clarity.
+  </p>
+
+  <div class="vmv-section">
+    <div class="vmv-card">
+      <div class="vmv-icon">👁️‍🗨️</div>
+      <h3>Our Vision</h3>
+      <p>To be the most trusted digital platform for proactive diabetes management worldwide.</p>
+    </div>
+    <div class="vmv-card">
+      <div class="vmv-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>Deliver accessible, data-driven insights that empower users and healthcare providers in the fight against diabetes.</p>
+    </div>
+    <div class="vmv-card">
+      <div class="vmv-icon">🤝</div>
+      <h3>Our Values</h3>
+      <p>Integrity, privacy, innovation, and compassion guide everything we do.</p>
+    </div>
+  </div>
+
+  <!-- Who We Are Section -->
+  <section class="about-section">
+    <div class="about-text">
+      <h2>Who We Are</h2>
+      <p>
+        At <strong>SugarSense</strong>, we believe that knowledge is the first step toward prevention. Our team combines expertise in machine learning, data science, and healthcare to develop a smart diabetes prediction platform accessible to everyone.
+      </p>
+      <p>
+        Our goal is to empower individuals with insights into their health risks so they can take proactive steps before complications arise. We harness data-driven technology with a user-first mindset, prioritizing accuracy, privacy, and ease of use.
+      </p>
+      <p>
+        Whether you’re a healthcare professional or someone curious about your health, SugarSense provides a reliable tool designed for early detection and education.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="{% static 'images/about.jpg' %}" alt="About SugarSense Team and Technology">
+    </div>
+  </section>
+
+  <!-- Methodology Section -->
+  <h2 style="text-align:center; margin-bottom: 30px; color: #007B8A;">Our Methodology</h2>
+  <div class="features">
+    <div class="feature-box">
+      <div class="feature-inner">
+        <div class="feature-front">
+          <img src="{% static 'images/feature1.jpg' %}" alt="Data Input & Processing">
+        </div>
+        <div class="feature-back">
+          <h4>1. Data Input & Processing</h4>
+          <p>Users enter key health metrics like glucose level, BMI, age, and family history. Our system ensures this data is processed securely and efficiently.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-box">
+      <div class="feature-inner">
+        <div class="feature-front">
+          <img src="{% static 'images/feature2.jpg' %}" alt="Machine Learning Prediction">
+        </div>
+        <div class="feature-back">
+          <h4>2. Machine Learning Prediction</h4>
+          <p>Advanced ML models evaluate user input to determine risk levels, continually learning from new patterns to improve accuracy over time.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-box">
+      <div class="feature-inner">
+        <div class="feature-front">
+          <img src="{% static 'images/feature3.jpg' %}" alt="Personalized Recommendations">
+        </div>
+        <div class="feature-back">
+          <h4>3. Personalized Recommendations</h4>
+          <p>Based on your predicted risk, SugarSense suggests personalized lifestyle tips or encourages professional consultation when necessary.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    “SugarSense gave me the insights I needed to make real changes in my life — simple, reliable, and empowering.”<br><br>
+    — A Happy User
+  </div>
+
+  <div class="contact-cta" onclick="window.location.href='/contact'">
+    Contact Us to Learn More &rarr;
+  </div>
+
+</div>
+
+{% endblock %}

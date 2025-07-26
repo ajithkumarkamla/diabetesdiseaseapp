@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Disease Predictor{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+    {% block head %}
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock %}
+</head>
+<body>
+
+
+
+<nav>
+    <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-tint" aria-hidden="true" style="font-size: 1.5em; margin-right: 10px;"></i>SugarSense</a>
+    <div class="nav-links">
+        <a href="{% url 'home' %}"> <i class="fa fa-home" aria-hidden="true"></i>Home</a>
+        <a href="{% url 'about' %}"><i class="fa fa-info-circle" aria-hidden="true"></i>About</a>
+        <a href="{% url 'login' %}"> <i class="fa fa-sign-in-alt" aria-hidden="true"></i>Login</a>
+        <a href="/admin/">AdminLogin</a>
+    </div>
+</nav>
+
+<!-- ✅ Main Content -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- ✅ Footer -->
+<footer>
+    <p>&copy; 2025 Disease Predictor | Built with Django |
+        <a href="#">Terms</a> | <a href="#">Privacy</a>
+    </p>
+</footer>
+
+{% block scripts %}
+<!-- JS -->
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+
+</body>
+</html>
